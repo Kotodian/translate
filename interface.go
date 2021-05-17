@@ -1,6 +1,12 @@
 package translate
 
-import "context"
+import (
+	"context"
+)
+
+var (
+	register = make(map[string]func() Translate)
+)
 
 type Header struct {
 	MessageType int32  `json:"message_type"`
@@ -18,4 +24,12 @@ func GetHeader(call Translate) Header {
 }
 func InitHeader(ctx context.Context, callType int32, trans Translate) {
 	trans.Init(callType, MessageIDFromCtx(ctx), ActionNameFromCtx(ctx))
+}
+
+func New(header Header) Translate {
+	if header.MessageType == 2 {
+		return register[header.Action+"Request"]()
+	} else {
+		return register[header.Action+"Response"]()
+	}
 }

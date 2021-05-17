@@ -13,6 +13,14 @@ type DeviceRegistrationReq struct {
 	VendorName string `json:"vendor_name"`
 }
 
+func init() {
+	register["BootNotificationRequest"] = NewDeviceRegistrationRequest
+	register["BootNotificationResponse"] = NewDeviceRegistrationResponse
+}
+func NewDeviceRegistrationRequest() Translate {
+	return &DeviceRegistrationReq{}
+}
+
 func (d *DeviceRegistrationReq) Head() Header {
 	return Header{
 		MessageType: d.MessageType,
@@ -32,6 +40,9 @@ type DeviceRegistrationResp struct {
 	Status int32
 }
 
+func NewDeviceRegistrationResponse() Translate {
+	return &DeviceRegistrationResp{}
+}
 func (d *DeviceRegistrationResp) Init(messageType int32, messageID string, action string) {
 	d.MessageType = messageType
 	d.MessageID = messageID
