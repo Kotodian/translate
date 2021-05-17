@@ -29,7 +29,9 @@ func InitHeader(ctx context.Context, callType int32, trans Translate) {
 func New(header Header) Translate {
 	if header.MessageType == 2 {
 		return register[header.Action+"Request"]()
-	} else {
+	} else if header.MessageType == 3 {
 		return register[header.Action+"Response"]()
+	} else {
+		return register[header.Action+"Error"]()
 	}
 }
