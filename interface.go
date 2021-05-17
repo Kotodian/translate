@@ -1,5 +1,7 @@
 package translate
 
+import "context"
+
 type Header struct {
 	MessageType int32  `json:"message_type"`
 	MessageID   string `json:"message_id"`
@@ -13,4 +15,7 @@ type Translate interface {
 
 func GetHeader(call Translate) Header {
 	return call.Head()
+}
+func InitHeader(ctx context.Context, callType int32, trans Translate) {
+	trans.Init(callType, MessageIDFromCtx(ctx), ActionNameFromCtx(ctx))
 }
