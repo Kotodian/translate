@@ -31,7 +31,8 @@ func New(header Header) Translate {
 		return register[header.Action+"Request"]()
 	} else if header.MessageType == 3 {
 		return register[header.Action+"Response"]()
-	} else {
-		return register[header.Action+"Error"]()
+	} else if header.MessageType == 4 {
+		return register["error"]()
 	}
+	return nil
 }

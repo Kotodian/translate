@@ -7,6 +7,10 @@ type Error struct {
 	ErrorDetails     interface{}
 }
 
+func init() {
+	register["error"] = NewError
+}
+
 func NewError() Translate {
 	return &Error{}
 }

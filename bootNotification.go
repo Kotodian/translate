@@ -16,7 +16,6 @@ type DeviceRegistrationReq struct {
 func init() {
 	register["BootNotificationRequest"] = NewDeviceRegistrationRequest
 	register["BootNotificationResponse"] = NewDeviceRegistrationResponse
-	register["BootNotificationError"] = NewError
 }
 func NewDeviceRegistrationRequest() Translate {
 	return &DeviceRegistrationReq{}
