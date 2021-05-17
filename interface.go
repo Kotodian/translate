@@ -6,11 +6,11 @@ type Header struct {
 	Action      string `json:"action"`
 }
 
-type Call interface {
+type Translate interface {
 	Init(messageType int32, messageID string, action string)
 	Head() Header
 }
 
-func GetHeader(call Call) Header {
+func GetHeader(call Translate) Header {
 	return call.Head()
 }
