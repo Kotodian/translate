@@ -1,6 +1,6 @@
 package translate
 
-type Common struct {
+type Header struct {
 	MessageType int32  `json:"message_type"`
 	MessageID   string `json:"message_id"`
 	Action      string `json:"action"`
@@ -8,5 +8,9 @@ type Common struct {
 
 type Call interface {
 	Init(messageType int32, messageID string, action string)
-	Comm() Common
+	Head() Header
+}
+
+func GetHeader(call Call) Header {
+	return call.Head()
 }

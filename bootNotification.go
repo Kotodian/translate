@@ -1,7 +1,7 @@
 package translate
 
 type DeviceRegistrationReq struct {
-	Common `json:",inline"`
+	Header `json:",inline"`
 	// SerialNumber 设备sn
 	SerialNumber string `json:"serial_number"`
 	// Model
@@ -13,8 +13,8 @@ type DeviceRegistrationReq struct {
 	VendorName string `json:"vendor_name"`
 }
 
-func (d *DeviceRegistrationReq) Com() Common {
-	return Common{
+func (d *DeviceRegistrationReq) Head() Header {
+	return Header{
 		MessageType: d.MessageType,
 		MessageID:   d.MessageID,
 		Action:      d.Action,
@@ -28,7 +28,7 @@ func (d *DeviceRegistrationReq) Init(messageType int32, messageID string, action
 }
 
 type DeviceRegistrationResp struct {
-	Common `json:",inline"`
+	Header `json:",inline"`
 	Status int32
 }
 
@@ -39,11 +39,10 @@ func (d *DeviceRegistrationResp) Init(messageType int32, messageID string, actio
 
 }
 
-func (d *DeviceRegistrationResp) Comm() Common {
-	return Common{
+func (d *DeviceRegistrationResp) Head() Header {
+	return Header{
 		MessageType: d.MessageType,
 		MessageID:   d.MessageID,
 		Action:      d.Action,
 	}
-
 }
