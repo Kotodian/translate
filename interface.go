@@ -5,3 +5,8 @@ type Common struct {
 	MessageID   string `json:"message_id"`
 	Action      string `json:"action"`
 }
+
+type Call interface {
+	Init(messageType int32, messageID string, action string)
+	Comm() Common
+}

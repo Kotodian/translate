@@ -13,6 +13,37 @@ type DeviceRegistrationReq struct {
 	VendorName string `json:"vendor_name"`
 }
 
+func (d *DeviceRegistrationReq) Com() Common {
+	return Common{
+		MessageType: d.MessageType,
+		MessageID:   d.MessageID,
+		Action:      d.Action,
+	}
+}
+
+func (d *DeviceRegistrationReq) Init(messageType int32, messageID string, action string) {
+	d.MessageType = messageType
+	d.MessageID = messageID
+	d.Action = action
+}
+
 type DeviceRegistrationResp struct {
+	Common `json:",inline"`
 	Status int32
+}
+
+func (d *DeviceRegistrationResp) Init(messageType int32, messageID string, action string) {
+	d.MessageType = messageType
+	d.MessageID = messageID
+	d.Action = action
+
+}
+
+func (d *DeviceRegistrationResp) Comm() Common {
+	return Common{
+		MessageType: d.MessageType,
+		MessageID:   d.MessageID,
+		Action:      d.Action,
+	}
+
 }
