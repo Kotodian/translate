@@ -1,6 +1,7 @@
 package translate
 
 type DeviceRegistrationReq struct {
+	Common `json:",inline"`
 	// SerialNumber 设备sn
 	SerialNumber string `json:"serial_number"`
 	// Model
