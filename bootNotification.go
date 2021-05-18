@@ -35,6 +35,12 @@ func (d *BootNotificationRequest) Init(messageType int32, messageID string, acti
 	d.Action = action
 }
 
+const (
+	RegistrationStatusRejected = 0
+	RegistrationStatusAccepted = 1
+	RegistrationStatusPending  = 2
+)
+
 type BootNotificationResponse struct {
 	Header `json:",inline"`
 	Status int32
