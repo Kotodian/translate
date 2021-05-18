@@ -1,6 +1,6 @@
 package translate
 
-type DeviceRegistrationReq struct {
+type BootNotificationRequest struct {
 	Header `json:",inline"`
 	// SerialNumber 设备sn
 	SerialNumber string `json:"serial_number"`
@@ -14,14 +14,14 @@ type DeviceRegistrationReq struct {
 }
 
 func init() {
-	register["BootNotificationRequest"] = NewDeviceRegistrationRequest
-	register["BootNotificationResponse"] = NewDeviceRegistrationResponse
+	register["BootNotificationRequest"] = NewBootNotificationRequest
+	register["BootNotificationResponse"] = NewBootNotificationResponse
 }
-func NewDeviceRegistrationRequest() Translate {
-	return &DeviceRegistrationReq{}
+func NewBootNotificationRequest() Translate {
+	return &BootNotificationRequest{}
 }
 
-func (d *DeviceRegistrationReq) Head() Header {
+func (d *BootNotificationRequest) Head() Header {
 	return Header{
 		MessageType: d.MessageType,
 		MessageID:   d.MessageID,
@@ -29,28 +29,28 @@ func (d *DeviceRegistrationReq) Head() Header {
 	}
 }
 
-func (d *DeviceRegistrationReq) Init(messageType int32, messageID string, action string) {
+func (d *BootNotificationRequest) Init(messageType int32, messageID string, action string) {
 	d.MessageType = messageType
 	d.MessageID = messageID
 	d.Action = action
 }
 
-type DeviceRegistrationResp struct {
+type BootNotificationResponse struct {
 	Header `json:",inline"`
 	Status int32
 }
 
-func NewDeviceRegistrationResponse() Translate {
-	return &DeviceRegistrationResp{}
+func NewBootNotificationResponse() Translate {
+	return &BootNotificationResponse{}
 }
-func (d *DeviceRegistrationResp) Init(messageType int32, messageID string, action string) {
+func (d *BootNotificationResponse) Init(messageType int32, messageID string, action string) {
 	d.MessageType = messageType
 	d.MessageID = messageID
 	d.Action = action
 
 }
 
-func (d *DeviceRegistrationResp) Head() Header {
+func (d *BootNotificationResponse) Head() Header {
 	return Header{
 		MessageType: d.MessageType,
 		MessageID:   d.MessageID,
